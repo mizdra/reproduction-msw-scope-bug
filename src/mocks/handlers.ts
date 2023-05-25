@@ -1,11 +1,8 @@
-import { graphql } from 'msw';
+import { rest } from 'msw';
 
 export const handlers = [
-  graphql.query('GreetingQuery', (req, res, ctx) => {
-    return res(
-      ctx.data({
-        hello: 'Hello world!',
-      }),
-    );
+  rest.get('/base/api/greeting', (req, res, ctx) => {
+    console.log(req.url.href)
+    return res(ctx.text('Hello world!'));
   }),
 ];
